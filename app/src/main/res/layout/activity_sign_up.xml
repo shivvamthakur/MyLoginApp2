@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/loginbtn"
         android:layout_below="@id/setPass"
-        android:text="LOGIN"
+        android:text="Register"
         android:backgroundTint="@color/design_default_color_secondary"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
