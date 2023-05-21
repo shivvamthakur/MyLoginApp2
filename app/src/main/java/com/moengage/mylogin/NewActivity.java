@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
+import com.moengage.mylogin.R;
 
 public class NewActivity extends AppCompatActivity {
 
