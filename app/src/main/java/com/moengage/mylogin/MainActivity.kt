@@ -1,57 +1,59 @@
-package com.moengage.mylogin;
+package com.moengage.mylogin
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
+import com.moengage.core.Properties
+import com.moengage.core.analytics.MoEAnalyticsHelper.setUniqueId
+import com.moengage.core.analytics.MoEAnalyticsHelper.trackEvent
+import com.moengage.pushbase.MoEPushHelper
 
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val properties = Properties()
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val username = findViewById<View>(R.id.username) as TextView
+        val password = findViewById<View>(R.id.password) as TextView
+        val loginbtn = findViewById<View>(R.id.loginbtn) as MaterialButton
+        val signupbtn = findViewById<View>(R.id.signupbtn) as MaterialButton
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+        MoEPushHelper.getInstance().requestPushPermission(this)
 
-import com.google.android.material.button.MaterialButton;
-import com.moengage.mylogin.R;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        TextView username =(TextView) findViewById(R.id.username);
-        TextView password =(TextView) findViewById(R.id.password);
-
-        MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
-        MaterialButton signupbtn = (MaterialButton) findViewById(R.id.signupbtn);
 
         //admin and admin
-
-        loginbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(username.getText().toString().equals("admin_android") && password.getText().toString().equals("admin")){
-                    //correct
-                    Toast.makeText(MainActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),NewActivity.class);
-                    startActivity(intent);
-                }else
-                    //incorrect
-                    Toast.makeText(MainActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        signupbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),SignUp.class);
-                startActivity(intent);
-            }
-        });
-
-
+        loginbtn.setOnClickListener {
+            if (password.text.toString() == "admin") {
+                //correct
+                Toast.makeText(this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show()
+                setUniqueId(this, username.text.toString())
+                val intent = Intent(applicationContext, NewActivity::class.java)
+                startActivity(intent)
+            } else  //incorrect
+                Toast.makeText(
+                    this,
+                    "LOGIN FAILED !!! Wrong password",
+                    Toast.LENGTH_SHORT
+                ).show()
+        }
+        signupbtn.setOnClickListener {
+            properties // tracking integer
+                .addAttribute("visited", " ")
+            // tracking string
+//                        .addAttribute("product", "iPhone");
+            // tracking Date
+//                        .addAttribute("purchaseDate", new Date())
+//                        // tracking double
+//                        .addAttribute("price", 5999.99)
+//                        // tracking location
+//                        .addAttribute("userLocation", new Geolocation(40.77, 73.98));
+            trackEvent(this, "SignUpClicked", properties)
+            val intent = Intent(applicationContext, SignUp::class.java)
+            startActivity(intent)
+        }
     }
 }

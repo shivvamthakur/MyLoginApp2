@@ -39,5 +39,29 @@
         android:layout_margin="20dp"
         />
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/purchasebtn"
+        android:layout_below="@id/logoutbtn"
+        android:text="Purchase"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notificationbtn"
+        android:layout_below="@id/purchasebtn"
+        android:text="Check Notifications"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        />
+
+
+
 
 </RelativeLayout>
