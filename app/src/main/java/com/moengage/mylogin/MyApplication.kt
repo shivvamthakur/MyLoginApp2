@@ -18,7 +18,7 @@ class MyApplication: Application() {
 
         MoEPushHelper.getInstance().pushPermissionResponse(this, true)
 //        MoEFireBaseHelper.getInstance().passPushToken(this,)
-        val moEngage = MoEngage.Builder(this, "5ZCYAM3ICF13B6YGB13EPTTM", DataCenter.DATA_CENTER_1)
+        val moEngage = MoEngage.Builder(this, "2877NHMD0TOHATHC6NNHDERW", DataCenter.DATA_CENTER_1)
             .configureNotificationMetaData(NotificationConfig(R.drawable.small_icon, R.drawable.large_icon))
 //            .configureFcm(FcmConfig(false))
             .configureLogs(LogConfig(LogLevel.VERBOSE,true))
